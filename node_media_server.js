@@ -7,9 +7,9 @@
 const Https = require('https');
 const Logger = require('./node_core_logger');
 const NodeRtmpServer = require('./node_rtmp_server');
-const NodeHttpServer = require('./node_http_server');
-const NodeTransServer = require('./node_trans_server');
-const NodeRelayServer = require('./node_relay_server');
+//const NodeHttpServer = require('./node_http_server');
+//const NodeTransServer = require('./node_trans_server');
+//const NodeRelayServer = require('./node_relay_server');
 const context = require('./node_core_ctx');
 const Package = require("./package.json");
 
@@ -26,28 +26,28 @@ class NodeMediaServer {
       this.nrs.run();
     }
 
-    if (this.config.http) {
-      this.nhs = new NodeHttpServer(this.config);
-      this.nhs.run();
-    }
+    // if (this.config.http) {
+    //   this.nhs = new NodeHttpServer(this.config);
+    //   this.nhs.run();
+    // }
 
-    if (this.config.trans) {
-      if (this.config.cluster) {
-        Logger.log('NodeTransServer does not work in cluster mode');
-      } else {
-        this.nts = new NodeTransServer(this.config);
-        this.nts.run();
-      }
-    }
+    // if (this.config.trans) {
+    //   if (this.config.cluster) {
+    //     Logger.log('NodeTransServer does not work in cluster mode');
+    //   } else {
+    //     this.nts = new NodeTransServer(this.config);
+    //     this.nts.run();
+    //   }
+    // }
 
-    if (this.config.relay) {
-      if (this.config.cluster) {
-        Logger.log('NodeRelayServer does not work in cluster mode');
-      } else {
-        this.nls = new NodeRelayServer(this.config);
-        this.nls.run();
-      }
-    }
+    // if (this.config.relay) {
+    //   if (this.config.cluster) {
+    //     Logger.log('NodeRelayServer does not work in cluster mode');
+    //   } else {
+    //     this.nls = new NodeRelayServer(this.config);
+    //     this.nls.run();
+    //   }
+    // }
 
     process.on('uncaughtException', function (err) {
       Logger.error('uncaughtException', err);
